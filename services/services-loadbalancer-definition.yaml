@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-backend-app
+spec:
+  type: LoadBalancer 
+  ports:
+    - port: 80 # service exposed port
+      targetPort: 80 # pod exposed port
+      nodePort: 30022
+
+### Google Cloud / AWS / Azure (leverages supported native load balancers from Cloud Providers)

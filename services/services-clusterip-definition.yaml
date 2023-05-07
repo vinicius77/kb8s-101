@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-backend-app
+spec:
+  type: ClusterIP # default type
+  ports:
+    - port: 80 # service exposed port
+      targetPort: 80 # pod exposed port
+  selector:
+    type: backend
+    app: my-app
+
+## Other pods can be accessed using either the server ip or service name
+

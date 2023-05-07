@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app-service
+spec:
+  type: NodePort
+  selector:
+    tier: frontend ## labels to identify the pod(s) e.g. pod-definition
+  ports:
+    - targetPort: 80 # Pod port
+      port: 80 # service port
+      nodePort: 30008 # range between 30000 - 32767
+
+## Access (curl of web browser)
+## kubectl get services
+## curl http://<ip_adress_of_node>:30008 
