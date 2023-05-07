@@ -1,0 +1,22 @@
+### replication controller example
+
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: myapp-rc
+  labels:
+    app: myapp
+    type: front-end
+spec:
+  template:
+    metadata: ## Content of pod.yaml file
+      name: nginx
+      labels:
+        app: app-nginx
+        tier: front-end
+    spec:
+      containers:
+        - name: nginx
+          image: nginx # Dockerhub image name
+  replicas: 3 ## number of replicas
+
