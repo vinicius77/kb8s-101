@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myapp-replicaset
+  labels:
+    app: myapp
+    type: front-end
+spec:
+  template:
+    metadata:
+      name: nginx
+      labels:
+        app: app-nginx
+        tier: front-end
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx # Dockerhub image name
+  replicas: 2
+  selector:
+    matchLabels:
+      type: front-end
