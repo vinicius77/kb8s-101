@@ -1,0 +1,62 @@
+kubectl get pods
+
+kubectl describe pod nginx
+kubectl describe pod # -all ish
+kubectl get pods -o wide
+
+kubectl delete pod webapp
+
+kubectl apply -f pod.yaml
+
+## Creating pods without yaml file output commands in yaml format
+kubectl run redis --image=redis --dry-run=client -o yaml > redis.yaml
+kubectl apply -f redis.yaml
+
+### Replication Controller
+kubectl apply -f rc-definition.yaml
+kubectl get replicationcontroller
+
+## Replicaset
+kubectl apply -f replicaset-definition.yaml
+kubectl get replicaset
+kubectl get pods
+
+### Scalling
+
+### Update the number of replicas on yaml file, for instance
+kubectl replace -f replicaset-definition.yaml
+
+# Those commands do scale but not update the yaml file
+kubectl scale --replicas=4 -f replicaset-definition.yaml
+kubectl scale --replicas=4 replicaset myapp-replicaset
+kubectl edit replicaset myapp-replicaset ## Will open a temp file
+
+kubectl delete replicaset <replica-set-name> ## Deletes all PODs as well
+
+## Deployment
+kubectl create deployment my-app-deployment --image=busybox --replicas=3
+kubectl apply -f deployment-definition.yaml --record # records the command ran to create the deployment (change-cause)
+kubectl get deployments
+kubectl get all # replicasset , pods and deployments
+kubectl set image deployment my-app-deployment <container_name>=busybox ## sets a new image
+
+## Create and deploy with default settings
+kubectl run nginx --image=nginx
+
+## Rollout and Versioning (Deployment)
+kubectl rollout status deployment/myapp-deployment
+kubectl rollout history deployment/myapp-deployment
+kubectl rollout undo deployment/myapp-deployment ## Rollback
+
+## Strategy (Deployment)
+## Recreate
+- Destroy all instances and create new instances at once (issue application down)
+## Rollout Update (Default)
+- Destroy and create new instances one at time
+
+### Services
+kubectl create -f service-nodeport-definition.yaml
+kubectl get services
+
+### Getting service url (minikube)
+minikube service <service_name> --url 
