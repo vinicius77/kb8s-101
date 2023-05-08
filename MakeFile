@@ -59,4 +59,17 @@ kubectl create -f service-nodeport-definition.yaml
 kubectl get services
 
 ### Getting service url (minikube)
-minikube service <service_name> --url 
+minikube service <service_name> --url
+
+### Hosted Solutions GKE => Google Kubernetes Engine (Kb8s as a service)
+# Services such NodePort are changed to LoadBalancer on GC (External LoadBalancer)
+
+### Minukube setup (cluster on local machine)
+## 1. install kubectl
+
+## make sure virtualization is enabled
+grep -E --color 'vmx|svm' /proc/cpuinfo
+
+## install Hypervision (KVM ot VirtualBox) or using a Docker Container (not recommended)
+
+## install minikube (it automatically creates a virtual machine from previous step)
