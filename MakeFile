@@ -73,3 +73,17 @@ grep -E --color 'vmx|svm' /proc/cpuinfo
 ## install Hypervision (KVM ot VirtualBox) or using a Docker Container (not recommended)
 
 ## install minikube (it automatically creates a virtual machine from previous step)
+
+### Ubuntu Server
+### Steps to serve your service on local machine
+### Get you remote server ip address
+ip a | grep inet
+ 
+# returns something like: 
+# inet 192.168.63.3/24 metric 600 brd 192.168.63.255 scope global dynamic wlp2s0
+
+## Port forward from remote server to local machine
+kubectl port-forward --address 0.0.0.0 service/hello-minikube 8080:8080
+
+## Access on local machine browser
+http://192.168.63.3:8080/
