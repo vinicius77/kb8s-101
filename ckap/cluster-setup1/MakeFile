@@ -1,0 +1,8 @@
+### check kb8s cluster (internal kb8s cluster details)
+kubectl cluster-info
+
+### getting kubectl system namespaces
+kubectl get namespaces
+
+### creating a nginx pod to test kubectl
+kubectl run nginx --image=nginx
