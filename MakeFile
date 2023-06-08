@@ -87,3 +87,12 @@ kubectl port-forward --address 0.0.0.0 service/hello-minikube 8080:8080
 
 ## Access on local machine browser
 http://192.168.63.3:8080/
+
+
+#### Troubleshooting
+
+# To solve: couldn't get current server API group list:
+
+minikube delete
+minikube start --driver=docker
+kubectl get pods
